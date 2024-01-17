@@ -1,12 +1,21 @@
 import clock from "clock";
 import * as document from "document";
+import * as messaging from "messaging";
 import { preferences } from "user-settings";
 const arrowImg = document.getElementById("arrow");
 const glucoseText = document.getElementById("glucose");
 const unitsText = document.getElementById("units");
 const timestampText = document.getElementById("timestamp");
 const errorText = document.getElementById("error");
-function zeroPad(i) {
+
+function fetchGlucose() {
+  if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
+      messaging.peerSocket.send({
+          command: "glucose"
+      });
+    }
+
+  }function zeroPad(i) {
   if (i < 10) {
     i = "0" + i;
   }
@@ -39,3 +48,75 @@ clock.ontick = (evt) => {
   myLabel.text = `${hours}:${mins}`;
   myDate.text = `${dayOfWeek} ${date}`;
 }
+messaging.peerSocket.addEventListener("message", (evt) => {
+    if (evt.data && "error" in evt.data) {
+        errorText.textContent = evt.data.error;
+        glucoseText.textContent = "";
+        timestampText.textContent = "";
+        unitsText.textContent = "";
+        arrowImg.src = "";
+    } else if (evt.data && "Value" in evt.data) {
+        errorText.textContent = "";
+        glucoseText.textContent = evt.data.Value;
+        timestampText.textContent = `Last Reading:\n${evt.data.Timestamp}`;
+        switch(evt.data.GlucoseUnits) {
+            case 1:
+                unitsText.textContent = "mg/dL";
+                break;
+            default:
+                unitsText.textContent = "mmol/L";
+                break;
+        }
+        switch(evt.data.MeasurementColor) {
+            case 1:
+                glucoseText.style.fill = "lime";
+                unitsText.style.fill = "lime";
+                arrowImg.style.fill = "lime";
+                break;
+            case 2:
+                glucoseText.style.fill = "yellow";
+                unitsText.style.fill = "yellow";
+                arrowImg.style.fill = "yellow";
+                break;
+            case 3:
+                glucoseText.style.fill = "orange";
+                unitsText.style.fill = "orange";
+                arrowImg.style.fill = "orange";
+                break;
+            case 4:
+                glucoseText.style.fill = "red";
+                unitsText.style.fill = "red";
+                arrowImg.style.fill = "red";
+                break;
+            default:
+                glucoseText.style.fill = "grey";
+                unitsText.style.fill = "grey";
+                arrowImg.style.fill = "grey";
+                break;
+        }
+        switch(evt.data.TrendArrow) {
+            case 1:
+                arrowImg.src = "arrow-down-thick.png";
+                break;
+            case 2:
+                arrowImg.src = "arrow-bottom-right-thick.png";
+                break;
+            case 3:
+                arrowImg.src = "arrow-right-thick.png";
+                break;
+            case 4:
+                arrowImg.src = "arrow-top-right-thick.png";
+                break;
+            case 5:
+                arrowImg.src = "arrow-up-thick.png";
+                break;
+            default:
+                arrowImg.src = "";
+                break;
+        }
+    }
+});
+messaging.peerSocket.addEventListener("error", (err) => {
+    console.error(`Connection error: ${err.code} - ${err.message}`);
+});
+setInterval(fetchGlucose, 60000); //call function every 60s
