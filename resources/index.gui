@@ -13,7 +13,7 @@
     font-family="System-Regular" fill="white" text-length="100"
     font-size="22" font-weight="light" 
     text-anchor="middle">Loading</textarea>
-  <image x="50%+38" y="50%-38" width="48" height="48" id="arrow" class="arrow"fill="white" opacity="1"/>
+  <image x="50%+55" y="50%-38" width="48" height="48" id="arrow" class="arrow"fill="white" opacity="1"/>
   <text x="50%+38" y="50%+24" id="glucose" width="50%" text-length="4"
     font-family="System-Regular" fill="white"
     font-size="82" font-weight="bold"
