@@ -1,8 +1,11 @@
 import clock from "clock";
 import * as document from "document";
 import * as messaging from "messaging";
+const arrowImg = document.getElementById("arrow") ;
+
 import { preferences } from "user-settings";
-const arrowImg = document.getElementById("arrow");
+
+//const arrowImg = document.querySelector('arrow');
 const glucoseText = document.getElementById("glucose");
 const unitsText = document.getElementById("units");
 const timestampText = document.getElementById("timestamp");
@@ -29,6 +32,7 @@ const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 const myLabel = document.getElementById("myLabel");
 const myDate = document.getElementById("myDate")
 
+
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
   let today = evt.date;
@@ -48,13 +52,14 @@ clock.ontick = (evt) => {
   myLabel.text = `${hours}:${mins}`;
   myDate.text = `${dayOfWeek} ${date}`;
 }
+
 messaging.peerSocket.addEventListener("message", (evt) => {
     if (evt.data && "error" in evt.data) {
         errorText.textContent = evt.data.error;
         glucoseText.textContent = "";
         timestampText.textContent = "";
         unitsText.textContent = "";
-        arrowImg.src = "";
+        arrowImg.href = "";
     } else if (evt.data && "Value" in evt.data) {
         errorText.textContent = "";
         glucoseText.textContent = evt.data.Value;
@@ -94,21 +99,24 @@ messaging.peerSocket.addEventListener("message", (evt) => {
                 arrowImg.style.fill = "grey";
                 break;
         }
+       
+        
+
         switch(evt.data.TrendArrow) {
             case 1:
-                arrowImg.src = "arrow-down-thick.png";
+                arrowImg.href = "arrow-down-thick.png";
                 break;
             case 2:
-                arrowImg.src = "arrow-bottom-right-thick.png";
+                arrowImg.href = "arrow-bottom-right-thick.png";
                 break;
             case 3:
-                arrowImg.src = "arrow-right-thick.png";
+                arrowImg.href = "arrow-right-thick.png";
                 break;
             case 4:
-                arrowImg.src = "arrow-top-right-thick.png";
+                arrowImg.href = "arrow-top-right-thick.png";
                 break;
             case 5:
-                arrowImg.src = "arrow-up-thick.png";
+                arrowImg.image.href = "arrow-up-thick.png";
                 break;
             default:
                 arrowImg.src = "";
@@ -119,4 +127,4 @@ messaging.peerSocket.addEventListener("message", (evt) => {
 messaging.peerSocket.addEventListener("error", (err) => {
     console.error(`Connection error: ${err.code} - ${err.message}`);
 });
-setInterval(fetchGlucose, 60000); //call function every 60s
+setInterval(fetchGlucose, 60000); //call function to read every 60s
