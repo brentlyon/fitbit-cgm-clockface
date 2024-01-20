@@ -1,9 +1,7 @@
 .background {
   viewport-fill: red;
 }
-.application-fill           { fill: fb-yellow; }
-.foreground-fill            { fill: fb-white; }
-.background-fill            { fill: fb-black; }
+
 #myLabel {
   font-size: 60;
   font-family: System-Bold;
@@ -18,12 +16,4 @@
   fill: white;
   x: 20%-10;
   font-family: "System-Light";
-}
-.plus-button #image {
-  href: “reloadicon.png”;
-}
-// Positioning  
-#button-1 {
-  x: 30;
-  y: 30;
 }

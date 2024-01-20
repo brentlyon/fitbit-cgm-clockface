@@ -1,7 +1,7 @@
 <svg class="background">
  <image href="background.png" />
   <text id="myLabel" />
-< svg x="50%">
+< svg x="25">
 <svg y = "-30%+160">
       <text text-length="32" id = "myDate" class="date">
       </text>

@@ -28,6 +28,7 @@ function fetchGlucose() {
 // Update the clock every minute
 clock.granularity = "minutes";
 const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+const months=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEPT","OCT","NOV","DEC"];
 // Get a handle on the <text> element
 const myLabel = document.getElementById("myLabel");
 const myDate = document.getElementById("myDate")
@@ -38,6 +39,8 @@ clock.ontick = (evt) => {
   let today = evt.date;
   //let day=days[today.getDay()];
   let day=today.getDay();
+  let monthOfyear=today.getMonth();
+  let month=months[monthOfyear];
   let dayOfWeek=days[day];
   let date = today.getDate();
   let hours = today.getHours();
@@ -50,7 +53,7 @@ clock.ontick = (evt) => {
   }
   let mins = zeroPad(today.getMinutes());
   myLabel.text = `${hours}:${mins}`;
-  myDate.text = `${dayOfWeek} ${date}`;
+  myDate.text = `${dayOfWeek} ${month} ${date}`;
 }
 
 messaging.peerSocket.addEventListener("message", (evt) => {
