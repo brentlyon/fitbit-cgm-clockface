@@ -44,6 +44,7 @@ clock.ontick = (evt) => {
   let dayOfWeek=days[day];
   let date = today.getDate();
   let hours = today.getHours();
+  let ampm = hours>=12?'pm':'am';
   if (preferences.clockDisplay === "12h") {
     // 12h format
     hours = hours % 12 || 12;
@@ -52,7 +53,7 @@ clock.ontick = (evt) => {
     hours = zeroPad(hours);
   }
   let mins = zeroPad(today.getMinutes());
-  myLabel.text = `${hours}:${mins}`;
+  myLabel.text = `${hours}:${mins} ${ampm}`;
   myDate.text = `${dayOfWeek} ${month} ${date}`;
 }
 
