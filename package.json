@@ -1,8 +1,8 @@
 {
   "name": "cgm",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "UNApache-2.0",
   "devDependencies": {
     "@fitbit/sdk": "~4.2.0",
     "@fitbit/sdk-cli": "^1.7.3",
