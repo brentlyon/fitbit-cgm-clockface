@@ -16,7 +16,7 @@
 
 cgm clockface
 
-Display latest glucose reading from Freestyle Libre sensors via LibreLinkUp on a Fitbit OS 4.0 device ( Versa 2)
+Display latest glucose reading from Freestyle Libre sensors via LibreLinkUp on a Fitbit OS 4.0 device ( Versa 2) with the correct changes to package.json you may attemptbuild for other devices. only the versa 2 was tested withis code.
 
 
 
