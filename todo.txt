@@ -1,3 +1,0 @@
-
-refresh button
-vibrate on alarm
