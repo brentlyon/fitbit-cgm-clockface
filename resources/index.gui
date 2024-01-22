@@ -14,6 +14,11 @@
 <svg class="background">
  <image href="background.png" />
   <text id="myLabel" />
+  <use id="refresh-button" href="#square-button-icon" y="50"  fill="coral">
+    <set href="#text"  attributeName="text-buffer" to="refresh" />
+    <set href="#image" attributeName="href" to="reloadicon.png"  />
+   <set href="square-button-icon" attributeName="display" to="inline"/>
+</use>
 < svg x="25">
 <svg y = "-30%+160">
       <text text-length="32" id = "myDate" class="date">

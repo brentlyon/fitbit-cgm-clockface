@@ -145,3 +145,8 @@ messaging.peerSocket.addEventListener("error", (err) => {
     console.error(`Connection error: ${err.code} - ${err.message}`);
 });
 setInterval(fetchGlucose, 60000); //call function to read every 60s
+let button = document.getElementById("refresh-button");
+button.onactivate = function(evt) {
+  console.log('refreshing...');
+  fetchGlucose();
+}
