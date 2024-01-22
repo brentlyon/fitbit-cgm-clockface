@@ -22,15 +22,16 @@ Display latest glucose reading from Freestyle Libre sensors via LibreLinkUp on a
 
 ## Install
 
-Connect your phone and your watch to the Fitbit developer bridge, then execute the following shell commands to build and side-load the app:
-npm install
+Connect your phone and your watch to the Fitbit developer bridge, then execute the following shell commands to build and side-load the clockface and companion:
+```shell
+npm add @fitbit/sdk
+npm add @fitbit/sdk-cli
+npx fitbit-build generate-appid
+npx fitbit-build
 npx fitbit
-build
-install
-
-
-
-
+fitbit$ connect phone
+fitbit$ install
+```
 
 For more information on how to use the Fitbit developer bridge, see Fitbit's documentation: [https://dev.fitbit.com/getting-started/](https://dev.fitbit.com/getting-started/)
 
