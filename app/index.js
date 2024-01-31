@@ -158,8 +158,8 @@ const currentTimeStamp = currentDate.getTime();
 
       
     if(currentTimeStamp-lastDataTimeStamp>300000){
-        errorText.style.fill="red";
-    errorText.textContent="OLD DATA!!!";
+        errorText.style.fill="yellow";
+    errorText.textContent="warning:OLD DATA!!!";
      glucoseText.style.fill = "grey";
      
     }

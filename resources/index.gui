@@ -27,7 +27,7 @@
 
 </svg>
 <svg>
-  <textarea x="25" y="50%" id="error" width="100%-50"
+  <textarea x="25" y="60%" id="error" width="100%-50"
     font-family="System-Regular" fill="white" text-length="100"
     font-size="22" font-weight="light" 
     text-anchor="middle">Loading</textarea>
