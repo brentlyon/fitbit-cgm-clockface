@@ -141,10 +141,10 @@ messaging.peerSocket.addEventListener("message", (evt) => {
                 break;
         }
     }
-    //check if last timestamp is greater than 5  minutes which may indicate sensor value is not updating to Librelinkup
-    //exampledata for testing
+    //check if last timestamp is greater than 5  minutes which may indicate sensor value is not updating to Librelinkup. display old dats warning.
+    
 
-    const recievedTimeStamp = "1/26/2024 11:29:44 AM ";
+    const recievedTimeStamp = evt.data.Timestamp
    //reformat recieved timestamp to yyyy-mm-ddThh:mm:ss the hard way because I cannot get anything else to work
   const convertedDateStamp=recievedTimeStamp.charAt(5)+recievedTimeStamp.charAt(6)+recievedTimeStamp.charAt(7)+recievedTimeStamp.charAt(8)    +'-'+'0'+recievedTimeStamp.charAt(0)+'-'+recievedTimeStamp.charAt(2)+recievedTimeStamp.charAt(3)+'T'  +recievedTimeStamp.charAt(10)+recievedTimeStamp.charAt(11)+':'+recievedTimeStamp.charAt(13)+recievedTimeStamp.charAt(14)+':'+recievedTimeStamp.charAt(16)+recievedTimeStamp.charAt(17)
   
