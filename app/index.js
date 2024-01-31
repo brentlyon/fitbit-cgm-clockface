@@ -14,6 +14,7 @@
 import clock from "clock";
 import * as document from "document";
 import * as messaging from "messaging";
+
 const arrowImg = document.getElementById("arrow") ;
 
 import { preferences } from "user-settings";
@@ -140,6 +141,28 @@ messaging.peerSocket.addEventListener("message", (evt) => {
                 break;
         }
     }
+    //check if last timestamp is greater than 5  minutes which may indicate sensor value is not updating to Librelinkup
+    //exampledata for testing
+
+    const recievedTimeStamp = "1/26/2024 11:29:44 AM ";
+   //reformat recieved timestamp to yyyy-mm-ddThh:mm:ss the hard way because I cannot get anything else to work
+  const convertedDateStamp=recievedTimeStamp.charAt(5)+recievedTimeStamp.charAt(6)+recievedTimeStamp.charAt(7)+recievedTimeStamp.charAt(8)    +'-'+'0'+recievedTimeStamp.charAt(0)+'-'+recievedTimeStamp.charAt(2)+recievedTimeStamp.charAt(3)+'T'  +recievedTimeStamp.charAt(10)+recievedTimeStamp.charAt(11)+':'+recievedTimeStamp.charAt(13)+recievedTimeStamp.charAt(14)+':'+recievedTimeStamp.charAt(16)+recievedTimeStamp.charAt(17)
+  
+     
+   //get timestamp of last recieved data
+   const lastDataTimeStamp=Date.parse(convertedDateStamp);
+  
+   //get the current date and timestamp
+const currentDate= new Date();
+const currentTimeStamp = currentDate.getTime();
+
+      
+    if(currentTimeStamp-lastDataTimeStamp>300000){
+        errorText.style.fill="red";
+    errorText.textContent="OLD DATA!!!";
+     glucoseText.style.fill = "grey";
+     
+    }
 });
 messaging.peerSocket.addEventListener("error", (err) => {
     console.error(`Connection error: ${err.code} - ${err.message}`);
@@ -147,6 +170,6 @@ messaging.peerSocket.addEventListener("error", (err) => {
 setInterval(fetchGlucose, 60000); //call function to read every 60s
 let button = document.getElementById("refresh-button");
 button.onactivate = function(evt) {
-  console.log('refreshing...');
+  
   fetchGlucose();
 }
