@@ -141,7 +141,7 @@ messaging.peerSocket.addEventListener("message", (evt) => {
                 break;
         }
     }
-    //check if last timestamp is greater than 5  minutes which may indicate sensor value is not updating to Librelinkup. display old dats warning.
+    //check if last timestamp is greater than 2  minutes which may indicate sensor value is not updating to Librelinkup. display old dats warning.
     
 
     const recievedTimeStamp = evt.data.Timestamp
@@ -157,7 +157,7 @@ const currentDate= new Date();
 const currentTimeStamp = currentDate.getTime();
 
       
-    if(currentTimeStamp-lastDataTimeStamp>300000){
+    if(currentTimeStamp-lastDataTimeStamp>20000){
         errorText.style.fill="yellow";
     errorText.textContent="warning:OLD DATA!!!";
      glucoseText.style.fill = "grey";

@@ -42,7 +42,7 @@ Launch the Fitbit app on your phone and open the settings page for this app. Ent
 You may need to modify the `LIBRELINKUP_URL` variable in `companion/index.ts` if you're using the servers in a different region.
 e.g for U.S. const LIBRELINKUP_URL = 'https://api-us.libreview.io' Tthe data is set to be read once per minute but you can use the refresh button to force an update now.
 ##errors
-if no new BG data has been recieved for 5 minutes an OLD DATA message will abe visible and the BG value will be grey. this may indicate that the sensor is not sending updated values to Librelink. check the libre phone app.
+if no new BG data has been recieved for 2 minutes an OLD DATA message will abe visible and the BG value will be grey. this may indicate that the sensor is not sending updated values to Librelink. check the libre phone app.
 ## License
 
 Copyright (C) 2024 BrentLyon. Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
