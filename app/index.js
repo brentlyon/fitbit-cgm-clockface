@@ -80,7 +80,7 @@ messaging.peerSocket.addEventListener("message", (evt) => {
         arrowImg.href = "";
     } else if (evt.data && "Value" in evt.data) {
         errorText.textContent = "";
-        glucoseText.textContent = evt.data.Value;
+        glucoseText.textContent = evt.data.Value.toFixed(1);
         timestampText.textContent = `Last Reading:\n${evt.data.Timestamp}`;
         switch(evt.data.GlucoseUnits) {
             case 1:
@@ -141,28 +141,14 @@ messaging.peerSocket.addEventListener("message", (evt) => {
                 break;
         }
     }
-    //check if last timestamp is greater than 2  minutes which may indicate sensor value is not updating to Librelinkup. display old dats warning.
-    
-
-    const recievedTimeStamp = evt.data.Timestamp
-   //reformat recieved timestamp to yyyy-mm-ddThh:mm:ss the hard way because I cannot get anything else to work
-  const convertedDateStamp=recievedTimeStamp.charAt(5)+recievedTimeStamp.charAt(6)+recievedTimeStamp.charAt(7)+recievedTimeStamp.charAt(8)    +'-'+'0'+recievedTimeStamp.charAt(0)+'-'+recievedTimeStamp.charAt(2)+recievedTimeStamp.charAt(3)+'T'  +recievedTimeStamp.charAt(10)+recievedTimeStamp.charAt(11)+':'+recievedTimeStamp.charAt(13)+recievedTimeStamp.charAt(14)+':'+recievedTimeStamp.charAt(16)+recievedTimeStamp.charAt(17)
-  
-     
-   //get timestamp of last recieved data
-   const lastDataTimeStamp=Date.parse(convertedDateStamp);
-  
-   //get the current date and timestamp
-const currentDate= new Date();
-const currentTimeStamp = currentDate.getTime();
-
-      
-    if(currentTimeStamp-lastDataTimeStamp>20000){
-        errorText.style.fill="yellow";
-    errorText.textContent="warning:OLD DATA!!!";
-     glucoseText.style.fill = "grey";
-     
-    }
+    //display contents of recieved object in console
+//     console.log('recieved data object:');
+//     const dataObject=evt.data
+// for (const key in dataObject) {
+//     if (dataObject.hasOwnProperty(key)) {
+//         console.log(`${key}: ${dataObject[key]}`);
+//     }
+// }
 });
 messaging.peerSocket.addEventListener("error", (err) => {
     console.error(`Connection error: ${err.code} - ${err.message}`);
