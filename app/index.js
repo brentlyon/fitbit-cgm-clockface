@@ -80,7 +80,7 @@ messaging.peerSocket.addEventListener("message", (evt) => {
         arrowImg.href = "";
     } else if (evt.data && "Value" in evt.data) {
         errorText.textContent = "";
-        glucoseText.textContent = evt.data.Value;
+        glucoseText.textContent = evt.data.Value.toFixed(1);
         timestampText.textContent = `Last Reading:\n${evt.data.Timestamp}`;
         switch(evt.data.GlucoseUnits) {
             case 1:
